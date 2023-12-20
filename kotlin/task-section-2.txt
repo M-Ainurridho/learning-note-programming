@@ -1,0 +1,134 @@
+fun main() {
+	// task 1 - mobile notifications
+    val morningNotification = 55
+    val eveningNotification = 135
+    
+    printNotificationSummary(morningNotification)
+    printNotificationSummary(eveningNotification)
+    println("---------------------------------------------------------")
+    
+    // task 2 - movie-ticket price
+    val child = 9
+    val adult = 28
+    val senior = 87
+    
+    val isMonday = true
+    
+    println("The movie ticket price for a person aged $child is \$${ticketPrice(child, isMonday)}.")
+    println("The movie ticket price for a person aged $adult is \$${ticketPrice(adult, isMonday)}.")
+    println("The movie ticket price for a person aged $senior is \$${ticketPrice(senior, isMonday)}.")
+    println("---------------------------------------------------------")
+    
+    // task 3 - temperature converter
+    printFinalTemperature(27.0, "Celcius", "Farenheit") { (it * 9/5) + 32 }
+    printFinalTemperature(350.0, "Kelvin", "Celcius") { it - 273.15 }
+    printFinalTemperature(10.0, "Farenheit", "Kelvin") { (it - 32) * 5/9 + 273.15 }
+    println("---------------------------------------------------------")
+
+    // task 4 - song catalog
+    val songOne = Song("Bad Liar", "Image Dragons", 2004, 1000)
+    songOne.songDescription()
+    println("is this popular song? ${songOne.isPopular}")
+    println("---------------------------------------------------------")
+
+    
+    // task 5 - internet profile 
+    val amanda = Person("Amanda", 33, "play tennis", null)
+    val atiqah = Person("Atiqah", 28, "climb", amanda)
+    
+    amanda.showProfile()
+    atiqah.showProfile()
+    println("---------------------------------------------------------")
+    
+    // task 6 - foldable phones
+    val mobilePhone = Phone()
+    mobilePhone.checkPhoneScreenLight()
+    mobilePhone.switchOn()
+    mobilePhone.checkPhoneScreenLight()
+    println("---------------------------------------------------------")
+    
+    // task 7 - special auction
+    val winningBid = Bid(5000, "Private Collector")
+    
+    println("Item A is sold at ${auctionPrice(winningBid, 2000)}.")
+    println("Item B is sold at ${auctionPrice(null, 3000)}.")
+    
+}
+
+fun printNotificationSummary(numberOfMessage: Int) {
+    when(numberOfMessage) {
+        0 -> println("No message!")
+		in 1..99 -> println("You have $numberOfMessage notifications")
+        else -> println("Your phone is blowing up! You have 99+ notifications.")
+    }
+}
+
+fun ticketPrice(age: Int, isMonday: Boolean): Int {
+    val price = when(age) {
+        in 0..12 -> 15
+        in 13..60 -> if(isMonday) 25 else 30
+        in 60..100 -> 20
+        else -> -1
+    }
+    return price
+}
+
+fun printFinalTemperature(
+    initialMeasurement: Double,
+    initialUnit: String,
+    finalUnit: String,
+    conversionFormula: (Double) -> Double
+): Unit {
+    val finalMeasurement = String.format("%.2f", conversionFormula(initialMeasurement))
+    println("$initialMeasurement degrees $initialUnit is $finalMeasurement degrees $finalUnit.")
+}
+
+class Song(
+    val title: String, 
+    val artist: String, 
+    val yearPublished: Int,
+    val playCount: Int
+) {
+    val isPopular: Boolean
+    	get() = playCount >= 1000
+    
+    fun songDescription() {
+        println("$title, performed by $artist, was released in $yearPublished.")
+    }
+}
+
+class Person(
+    val name: String,
+    val age: Int,
+    val hobby: String?,
+    val referrer: Person?
+) {
+    fun showProfile() {
+		if(referrer != null) {
+            println("Name: $name\nAge: $age\nLikes to play $hobby Has a referrer named ${referrer.name}. who likes to play ${referrer.hobby}")
+        } else {
+            println("Name: $name\nAge: $age\nDoesn't have a referrer\n")
+        }
+   	}
+}
+
+class Phone(var isScreenLightOn: Boolean = false) {
+    fun switchOn() {
+        isScreenLightOn = true
+    }
+    
+    fun switchOff() {
+        isScreenLightOn = false
+    }
+    
+    fun checkPhoneScreenLight() {
+        val phoneScreenLight = if (isScreenLightOn) "on" else "off"
+        println("The phone screen's light is $phoneScreenLight.")
+    }
+}
+
+class Bid(val amount: Int, val bidder: String)
+
+fun auctionPrice(bid: Bid?, minimumPrice: Int): Int {
+    return bid?.amount ?: minimumPrice
+}
