@@ -49,3 +49,5 @@ class Programmer extends Person {
         this.programmingLanguage = pL;
     }
 }
+const webDeveloper = new Programmer('Muhammad Ainurridho', true, 'm.ainurridho@gmail.com', 0, ['HTML', 'CSS', 'Javascript']);
+console.log(webDeveloper.sayHello());

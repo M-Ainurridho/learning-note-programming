@@ -63,6 +63,16 @@ class Programmer extends Person {
         pL: string[]
     ) {
         super(name, isCool, email, pets);
-        this.programmingLanguage = pL
+        this.programmingLanguage = pL;
     }
 }
+
+const webDeveloper: Programmer = new Programmer(
+    'Muhammad Ainurridho',
+    true,
+    'm.ainurridho@gmail.com',
+    0,
+    ['HTML', 'CSS', 'Javascript']
+);
+
+console.log(webDeveloper.sayHello());

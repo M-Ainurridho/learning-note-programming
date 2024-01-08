@@ -26,3 +26,16 @@ const sayBye = (person: PersonObject) => {
 };
 
 console.log(sayHi(person1));
+
+type Animal = {
+    name: string;
+};
+
+type Bear = Animal & {
+    honey: boolean;
+};
+
+const bear: Bear = {
+    name: 'Winnie',
+    honey: true,
+};

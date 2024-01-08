@@ -3,8 +3,8 @@
 // const link = document.querySelector('a');
 // console.log(link.href); // ERROR: Object is possibly 'null'. TypeScript can't be sure the anchor tag exists, as it can't access the DOM
 // Here we are telling TypeScript that we are certain that this anchor tag exists
-// const link = document.querySelector('a')!;
-// console.log(link.href); // www.freeCodeCamp.org
+const link = document.querySelector('a');
+console.log(link); // www.freeCodeCamp.org
 // Form Element
 // const form = document.getElementById('signup-form') as HTMLFormElement;
 // form.addEventListener('submit', (e: Event) => {

@@ -15,3 +15,7 @@ const sayBye = (person) => {
     return `Bye ${person.name}`;
 };
 console.log(sayHi(person1));
+const bear = {
+    name: 'Winnie',
+    honey: true,
+};

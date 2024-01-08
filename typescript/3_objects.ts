@@ -38,6 +38,20 @@ const mhs2: Mahasiswa = {
     age: 21,
 };
 
+// Extend interface
+// interface Animal {
+//     name: string;
+// }
+
+// interface Bear extends Animal {
+//     honey: boolean;
+// }
+
+// const bear: Bear = {
+//     name: 'Winnie',
+//     honey: true,
+// };
+
 // We can also declare function properties with function signatures. We can do this using old-school common JavaScript functions (sayHi), or ES6 arrow functions (sayBye):
 
 interface Speech {
